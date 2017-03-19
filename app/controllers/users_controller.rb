@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.signup(@user).deliver
       session[:user_id] = @user.id
-      redirect_to @user
+      redirect_to :root
     else
       render :new
     end
