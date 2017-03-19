@@ -1,0 +1,18 @@
+<% if @gallery.errors.any? %>
+   <div class="bg-danger col-xs-12">
+     <ul class="list-unstyled">
+       <% @gallery.errors.full_messages.each do |message| %>
+         <li>
+           <%= message %>
+         </li>
+       <% end %>
+     </ul>
+   </div>
+<% end %>
+
+
+
+<%= simple_form_for @gallery do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>

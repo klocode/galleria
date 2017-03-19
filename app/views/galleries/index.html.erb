@@ -1,7 +1,58 @@
 <div class="container">
   <div class="jumbotron">
-    <h1>A gallery that puts a world of possibilities at your fingertips. <i>Literally.</i></h1>
-    <p><%= link_to "Sign In", signin_path, class: "btn btn-primary" %></a>
-      <%= link_to "Sign Up!", new_user_path, class: "btn btn-primary" %></p>
+    <% if current_user %>
+      <h1>Welcome <%= current_user.username %></h1>
+    <% else %>
+      <h1>A gallery that puts a world of possibilities at your fingertips. <i>Literally.</i></h1>
+      <p><%= link_to "Sign In", signin_path, class: "btn btn-primary" %></a>
+        <%= link_to "Sign Up!", new_user_path, class: "btn btn-primary" %></p>
+      <% end %>
   </div>
+  <div class-"container">
+  <% if flash.any? %>
+    <% flash.each do |klass, message| %>
+    <div class="alert alert-<%= klass %>" role="alert">
+      <p>
+        <%= message %>
+      </p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+  <div class="row">
+    <% if current_user %>
+      <h1 class="text-center">Your Galleries</h1>
+      <% current_user.galleries.each do |g| %>
+      <div class="row">
+        <div class="col-md-offset-1 col-md-2">
+          <% if g.posts.any? %>
+            <%= link_to g do %>
+              <%= image_tag g.posts.last.photo.versions[:thumbnail] %>
+              <% end %>
+              <p>Gallery Name: <%= g.name %>, Created at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
+          <% else %>
+            <%= link_to g.name, g %>
+            <p>Created at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
+          <% end %>
+        </div>
+    </div>
+      <% end %>
+    <% else %>
+      <h1 class="text-center">Galleries</h1>
+      <% @galleries.each do |g| %>
+        <div class="row">
+          <div class ="col-md-offset-1 col-md-2">
+            <% if g.posts.any? %>
+              <%= link_to g do %>
+              <%= image_tag g.posts.last.photo.versions[:thumbnail] %>
+              <% end %>
+              <p><%= link_to g.name, g %>, Created at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
+            <% else %>
+              <%= link_to g.name, g %>
+              <p>Created at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+    <% end %>
 </div>

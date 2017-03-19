@@ -1,14 +1,18 @@
-class PostUploader < CarrierWave::Uploader::Base
+class PostPhotoUploader < CarrierWave::Uploader::Base
 
   include Cloudinary::CarrierWave
 
 
   version :standard do
-     process :resize_to_fill => [200, 200, :north]
+     process :resize_to_fill => [300, 300, :north]
    end
 
-   version :thumb do
-     resize_to_fit(50, 50)
+   version :viewing do
+     resize_to_fit(400, 400)
+   end
+
+   version :thumbnail do
+     resize_to_fit(200, 200)
    end
 
   # Include RMagick or MiniMagick support:

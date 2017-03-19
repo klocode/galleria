@@ -1,0 +1,17 @@
+<% if @post.errors.any? %>
+  <div class="bg-danger col-xs-12">
+    <ul class="list-unstyled">
+      <% @post.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= simple_form_for [@gallery, @post] do |f| %>
+  <%= f.input :caption %>
+  <%= f.input :photo %>
+  <%= f.button :submit, "Add Photo!", class: "btn btn-primary" %>
+<% end %>

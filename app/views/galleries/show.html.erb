@@ -1,0 +1,17 @@
+<div class="row text-center">
+  <h1> <%= @gallery.name %></h1>
+</div>
+<div>
+  <%= link_to "Add photo", new_gallery_post_path(@gallery), class: "btn btn-default" if @gallery.is_owner? current_user %>
+</div>
+<div class="container">
+  <% @gallery.posts.each do |g| %>
+  <div class="col-md-2">
+    <div class="row">
+      <%= link_to gallery_post_path(@gallery), class: "btn" do %>
+        <%= image_tag g.photo.versions[:standard] %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
