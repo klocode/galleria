@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :users
 
   resources :galleries do
+    member do
+      get "shares" => 'galleries#shares'
+      post "shares" => 'galleries#send_to'
+    end
     resources :posts
   end
 

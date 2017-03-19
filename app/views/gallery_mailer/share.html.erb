@@ -1,0 +1,10 @@
+<h1>Greetings!</h1>
+<p>
+  Just wanted to share this cool photo gallery with you.
+</p>
+
+
+<p><%= @gallery.name %>
+<p>This was created by <%= @gallery.user.username %></p>
+
+<%= link_to "See the full post", gallery_url(@gallery) %>

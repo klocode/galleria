@@ -1,7 +1,7 @@
 class GalleriesController < ApplicationController
 
   before_action :is_owner, only: [:edit, :update, :destroy]
-  before_action :find_gallery, only: [:show, :edit, :update, :destroy]
+  before_action :find_gallery, only: [:show, :edit, :update, :destroy, :shares, :send_to]
   before_action :require_user, only: [:new, :create, :destroy]
 
 
@@ -44,6 +44,16 @@ class GalleriesController < ApplicationController
     @gallery.destroy
     flash[:success] = "#{@gallery.name} deleted."
     redirect_to :root
+  end
+
+  def shares
+  end
+
+  def send_to
+    @send_to = params[:share][:send_to]
+    GalleryMailer.share(@gallery, @send_to, current_user).deliver
+    flash[:success] = "Gallery has been successfully shared!"
+    redirect_to @gallery
   end
 
 
