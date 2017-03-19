@@ -29,7 +29,7 @@
             <%= link_to g do %>
               <%= image_tag g.posts.last.photo.versions[:thumbnail] %>
               <% end %>
-              <p>Gallery Name: <%= g.name %>, Created at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
+              <p><%= link_to g.name, g %>, Created at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
           <% else %>
             <%= link_to g.name, g %>
             <p>Created at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>

@@ -5,4 +5,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :gallery
   # has_many :linkings
+
+  validates :photo, :caption, presence: true
+  
 end

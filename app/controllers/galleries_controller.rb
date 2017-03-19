@@ -1,6 +1,7 @@
 class GalleriesController < ApplicationController
 
-  before_action :find_gallery, only: [:show]
+  before_action :is_owner, only: [:edit, :update, :destroy]
+  before_action :find_gallery, only: [:show, :edit, :update, :destroy]
   before_action :require_user, only: [:new, :create, :destroy]
 
 
@@ -23,6 +24,19 @@ class GalleriesController < ApplicationController
     else
       flash[:danger] = "Something went wrong."
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @gallery.update(gallery_params)
+      flash[:success] = "Gallery updated!"
+      redirect_to @gallery
+    else
+      flash[:warning] = "Something went wrong, please try again."
+      redirect_to edit_gallery_path
     end
   end
 

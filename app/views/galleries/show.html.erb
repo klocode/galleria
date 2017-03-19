@@ -2,7 +2,9 @@
   <h1> <%= @gallery.name %></h1>
 </div>
 <div>
-  <%= link_to "Add photo", new_gallery_post_path(@gallery), class: "btn btn-default" if @gallery.is_owner? current_user %>
+  <%= link_to "Add Photo", new_gallery_post_path(@gallery), class: "btn btn-default" %>
+  <%= link_to "Edit Gallery", edit_gallery_path, class: "btn btn-default" %>
+  <%= link_to "Delete Gallery", @gallery, method: :delete, class: "btn btn-default" %>
 </div>
 <div class="container">
   <% @gallery.posts.each do |g| %>
