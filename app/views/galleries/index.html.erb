@@ -8,17 +8,7 @@
         <%= link_to "Sign Up!", new_user_path, class: "btn btn-primary" %></p>
       <% end %>
   </div>
-  <div class-"container">
-  <% if flash.any? %>
-    <% flash.each do |klass, message| %>
-    <div class="alert alert-<%= klass %>" role="alert">
-      <p>
-        <%= message %>
-      </p>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+
   <div class="row">
     <% if current_user %>
       <h1 class="text-center">Your Galleries</h1>
