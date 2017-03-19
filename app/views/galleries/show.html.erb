@@ -10,13 +10,13 @@
     <% end %>
 </div>
 <div class="container">
+  <div class="row">
   <% @gallery.posts.each do |g| %>
-  <div class="col-md-2">
-    <div class="row">
+    <div class="col-xs-6 col-md-3">
       <%= link_to gallery_post_path(@gallery), class: "btn" do %>
-        <%= image_tag g.photo.versions[:standard] %>
+        <%= image_tag g.photo.versions[:thumbnail] %>
       <% end %>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
