@@ -1,0 +1,18 @@
+<% if @user.errors.any? %>
+  <div class="bg-danger col-xs-12">
+    <ul class="list-unstyled">
+      <% @user.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.input :username %>
+  <%= f.input :password %>
+  <%= f.input :email %>
+  <%= f.button :submit, "Sign Up!", class: "btn btn-primary" %>
+<% end %>
