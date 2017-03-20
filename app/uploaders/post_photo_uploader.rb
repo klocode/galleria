@@ -8,7 +8,7 @@ class PostPhotoUploader < CarrierWave::Uploader::Base
    end
 
    version :viewing do
-     resize_to_fit(400, 400)
+     process :resize_to_fill => [500, 500, :north]
    end
 
    version :thumbnail do
