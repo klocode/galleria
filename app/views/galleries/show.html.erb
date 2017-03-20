@@ -13,7 +13,7 @@
   <div class="row">
     <% @gallery.posts.each do |g| %>
       <div class="col-xs-6 col-md-3">
-        <%= link_to gallery_post_path(@gallery), class: "btn" do %>
+        <%= link_to gallery_post_path(@gallery, g), class: "btn" do %>
           <%= image_tag g.photo.versions[:thumbnail] %>
         <% end %>
       </div>
