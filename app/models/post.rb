@@ -1,19 +1,21 @@
 class Post < ApplicationRecord
 
+  attr_accessor :again
+
   mount_uploader :photo, PostPhotoUploader
 
   belongs_to :user
   belongs_to :gallery
-  # has_many :linkings
 
   validates :photo, :caption, presence: true
 
-  # def default(version = :thumbnail)
-  #   if photo?
-  #     photo.versions[version].url
-  #   else
-  #     "https://static.pexels.com/photos/823/black-and-white-waves-close-up-view-circle.jpg"
-  #   end
-  # end
+  def next
+    gallery.posts.where("created_at > ?", created_at).first
+  end
+
+  def previous
+    gallery.posts.where("created_at < ?", created_at).last
+  end
+
 
 end

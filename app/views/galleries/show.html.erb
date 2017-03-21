@@ -3,22 +3,14 @@
 </div>
 <div>
   <% if current_user %>
-    <%= link_to "Add Photo", new_gallery_post_path(@gallery), class: "btn btn-default" %>
-    <%= link_to "Edit Gallery", edit_gallery_path, class: "btn btn-default" %>
-    <%= link_to "Delete Gallery", @gallery, method: :delete, class: "btn btn-default" %>
-    <%= link_to "Share Gallery", shares_gallery_path(@gallery), class: "btn btn-default" %>
+    <%= link_to "Add Photo", new_gallery_post_path(@gallery), class: "btn btn-success" %>
+    <%= link_to "Edit Gallery", edit_gallery_path, class: "btn btn-warning" %>
+    <%= link_to "Delete Gallery", @gallery, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+    <%= link_to "Share Gallery", shares_gallery_path(@gallery), class: "btn btn-info" %>
     <% end %>
 </div>
 <div class="container">
   <div class="row">
-    <% @gallery.posts.each do |g| %>
-      <div class="col-xs-6 col-md-3">
-        <%= link_to gallery_post_path(@gallery, g), class: "btn" do %>
-          <%= image_tag g.photo.versions[:thumbnail] %>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render @posts %>
   </div>
 </div>
-
-<!-- something is not right with my each loop here -->

@@ -2,7 +2,7 @@ class GalleriesController < ApplicationController
 
   before_action :is_owner, only: [:edit, :update, :destroy]
   before_action :find_gallery, only: [:show, :edit, :update, :destroy, :shares, :send_to]
-  before_action :require_user, only: [:new, :create, :destroy]
+  before_action :require_user, except: [:index, :show, :shares, :send_to]
 
 
   def index
@@ -10,6 +10,7 @@ class GalleriesController < ApplicationController
   end
 
   def show
+    @posts = @gallery.posts
   end
 
   def new

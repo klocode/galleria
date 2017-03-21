@@ -4,7 +4,7 @@ class PostPhotoUploader < CarrierWave::Uploader::Base
 
 
   version :standard do
-     process :resize_to_fill => [300, 300, :north]
+     process :resize_to_fill => [200, 200, :north]
    end
 
    version :viewing do
@@ -12,7 +12,7 @@ class PostPhotoUploader < CarrierWave::Uploader::Base
    end
 
    version :thumbnail do
-     resize_to_fit(200, 200)
+     process :resize_to_fill => [100, 100, :north]
    end
 
   # Include RMagick or MiniMagick support:

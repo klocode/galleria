@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
   before_action :is_owner, only: [:edit, :update, :destroy]
-  before_action :find_post, only: [:show, :edit, :update, :destroy]
-  before_action :require_user, only: [:new, :create, :destroy]
+  before_action :find_post, only: [:edit, :update, :destroy]
+  before_action :require_user, except: [:show]
   before_action :find_gallery
 
 
@@ -15,7 +15,11 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       flash[:success] = "Photo added to #{@gallery.name}"
-      redirect_to @gallery
+      if params[:post][:again] == "0"
+        redirect_to @gallery
+      else
+        redirect_to new_gallery_post_path(@gallery)
+      end
     else
       flash[:warning] = "Upload failed, please try again."
       render :new

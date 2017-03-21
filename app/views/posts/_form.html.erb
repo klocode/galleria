@@ -13,5 +13,6 @@
 <%= simple_form_for [@gallery, @post] do |f| %>
   <%= f.input :caption %>
   <%= f.input :photo %>
+  <%= f.input :again, label: "Upload another!", as: :boolean %>
   <%= f.button :submit, "Add Photo!", class: "btn btn-primary" %>
 <% end %>
