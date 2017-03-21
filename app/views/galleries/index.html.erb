@@ -12,51 +12,13 @@
   <div class="row">
     <% if current_user %>
       <h1 class="text-center">Your Galleries</h1>
-      <% current_user.galleries.each do |g| %>
       <div class="row">
-        <div class="media">
-          <% if g.posts.any? %>
-          <div class="media-left">
-            <%= link_to g, target: :_blank do %>
-              <%= image_tag g.posts.last.photo.versions[:thumbnail] %>
-              <% end %>
-            </div>
-            <div class="media-body">
-              <p><%= link_to g.name, g %></p>
-              <p>Created by <%= g.user.username %> at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
-            </div>
-          <% else %>
-          <div class="media-body">
-            <%= link_to g.name, g %>
-            <p>Created at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
-          <% end %>
-        </div>
-    </div>
-      <% end %>
+        <%= render current_user.galleries %>
+      </div>
     <% else %>
       <h1 class="text-center">Galleries</h1>
-        <% @galleries.each do |g| %>
           <div class="row">
-            <div class ="media">
-              <% if g.posts.any? %>
-              <div class="media-left">
-                <%= link_to g do %>
-                <%= image_tag g.posts.last.photo.versions[:thumbnail] %>
-                <% end %>
+                <%= render @galleries %>
               </div>
-              <div class="media-body">
-                <p><%= link_to g.name, g %></p>
-                 <p>Created by <%= g.user.username %> at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
-              </div>
-              <% else %>
-              <div class="media-body">
-                <%= link_to g.name, g %>
-                <p>Created at: <%= g.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
-              <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-    <% end %>
-  </div>
+  <% end %>
 </div>

@@ -1,5 +1,11 @@
 <div class="media">
   <div class="media-left">
-    <%= link_to gallery.name, gallery %>
-  </div>
+    <%= link_to gallery, target: :_blank do %>
+      <%= image_tag gallery.thumbnail %>
+      <% end %>
+    </div>
+    <div class="media-body">
+      <p><%= link_to gallery.name, gallery %></p>
+      <p>Created by <%= gallery.user.username %> at: <%= gallery.created_at.strftime("%A %b. %e %Y %I:%M %p") %></p>
+    </div>
 </div>

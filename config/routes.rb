@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       get "shares" => 'galleries#shares'
       post "shares" => 'galleries#send_to'
     end
-    resources :posts
+    resources :posts do
+      resources :shares, only:[:new, :create]
+    end
   end
 
 
