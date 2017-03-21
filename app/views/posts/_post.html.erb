@@ -1,7 +1,9 @@
   <div class="col-xs-6 col-md-3">
+    <div class="thumbnail">
     <%= link_to gallery_post_path(@gallery, post), class: "btn", data: {toggle: "modal", target:"#photomodal-#{post.id}", remote: false} do %>
       <%= image_tag post.photo.versions[:standard], class: "img-responsive" %>
     <% end %>
+    </div>
   </div>
 
 
